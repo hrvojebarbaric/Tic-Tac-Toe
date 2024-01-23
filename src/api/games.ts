@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { CurrentUser } from '../types/users'
+import { Move } from '../components/Board/Cell/Cell.types'
 
 export const getGames = async (token: string, limit: number, offset: number) => {
     const link = offset === 0 ? `?limit=${limit}` : `?limit=${limit}&offset=${offset}`
@@ -36,7 +37,7 @@ export const playGame = async (user: CurrentUser, id: string) => {
     return response.data
 }
 
-export const makeMove = async (user: CurrentUser, id: string, moveObject: any) => {
+export const makeMove = async (user: CurrentUser, id: string, moveObject: Move) => {
     const response = await axios.post(
         `https://tictactoe.aboutdream.io/games/${id}/move/`,
         moveObject,
